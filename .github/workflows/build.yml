@@ -17,7 +17,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install buildozer "cython<3" virtualenv
       - name: Construir APK
-        run: buildozer -v android debug
+        shell: bash
+        run: buildozer -v android debug 2>&1 | tee build.log
+      - name: Mostrar el error
+        if: failure()
+        run: |
+          echo '## Lineas con error' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          grep -n -i -E "error|failed|exception" build.log | sed 's/\x1b\[[0-9;]*m//g' | tail -n 25 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo '## Ultimas lineas' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          tail -n 60 build.log | sed 's/\x1b\[[0-9;]*m//g' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
