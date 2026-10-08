@@ -6,11 +6,12 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,json
 source.exclude_dirs = .github
 version = 0.1
-requirements = python3,kivy
+requirements = python3,kivy==2.3.0
 orientation = portrait
 android.api = 33
 android.minapi = 21
-android.archs = arm64-v8a, armeabi-v7a
+android.ndk = 25b
+android.archs = arm64-v8a
 android.accept_sdk_license = True
 
 [buildozer]
