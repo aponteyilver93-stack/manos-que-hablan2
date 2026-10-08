@@ -1,0 +1,11 @@
+{
+  "files": {
+    "./datos.py": "./datos.py",
+    "./docente.py": "./docente.py",
+    "./evaluacion.py": "./evaluacion.py",
+    "./juego.py": "./juego.py",
+    "./senas.py": "./senas.py",
+    "./usuarios.py": "./usuarios.py"
+  },
+  "experimental_create_proxy": "auto"
+}
